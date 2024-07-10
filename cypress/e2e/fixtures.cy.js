@@ -24,6 +24,8 @@ describe('Fixtures', () => {
       expect(item[1].value).eq(data.name);
     })
 
+    cy.get('#inlineRadio3').should('be.disabled');
+
   });
 
 })
