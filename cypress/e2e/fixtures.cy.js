@@ -5,7 +5,7 @@ describe('Fixtures', () => {
   let data = {};
 
   before(() => {
-    cy.fixture('Customer-Data').then(function(customerData){
+    cy.fixture('Customer-Data').then((customerData) =>{
       data = customerData;
     });
   });
@@ -19,7 +19,10 @@ describe('Fixtures', () => {
     // Select "Female" in gender selection field
     cy.get('#exampleFormControlSelect1').select(data.gender);
 
-
+    // Customer name must matches
+    cy.get('input.ng-pristine').then((item) => {
+      expect(item[1].value).eq(data.name);
+    })
 
   });
 
