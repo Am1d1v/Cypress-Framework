@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Fixtures', () => {
+describe('Customer Registration', () => {
 
   let data = {};
 
