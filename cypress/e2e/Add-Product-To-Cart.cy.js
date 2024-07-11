@@ -8,13 +8,8 @@ describe('Add product to cart', () => {
         // The cart is empty
         cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').contains('0')
 
-        cy.get('h4.card-title').each((product, productIndex) => {
-            // Add certain product to the cart
-            if(product.text().includes('iphone X')){
-                cy.get('button.btn').eq(productIndex).click();
-            }
-
-        })
+        // Add certain product to the cart
+        cy.addProduct('iphone X');
 
         // Product was added to the cart
         cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').contains('1')
