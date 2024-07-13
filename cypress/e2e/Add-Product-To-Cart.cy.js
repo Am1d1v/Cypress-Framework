@@ -1,7 +1,14 @@
 /// <reference types="cypress" />
 
 describe('Add product to cart', () => {
-  
+    
+    // Array of products
+        let products;
+
+    before(() => {
+        cy.fixture('Shop-Products').then((product) => products = product.productName);
+    })
+
     it('select product "iphone X" and add it into the cart', () => {
         cy.visit('https://rahulshettyacademy.com/angularpractice/shop');
 
@@ -33,7 +40,7 @@ describe('Add product to cart', () => {
         cy.get('tbody').should('have.length.above', 0);
     });
 
-    it.only('select products "Blackberry" & "iphone X" then add it into the cart', () => {
+    it('select products "Blackberry" & "iphone X" then add them into the cart', () => {
         cy.visit('https://rahulshettyacademy.com/angularpractice/shop');
 
         // The cart is empty
@@ -47,6 +54,22 @@ describe('Add product to cart', () => {
         cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').contains('2')
         cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').click();
         cy.get('tbody').should('have.length.above', 0);
+    });
+
+    it.only('select products from fixture array and add them into the cart', () => {
+        cy.visit('https://rahulshettyacademy.com/angularpractice/shop');
+
+        // The cart is empty
+        cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').contains('0')
+
+        // Add multiple products to the cart
+        products.forEach((product) => cy.addProduct(product));
+
+        // Product was added to the cart
+        cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').contains(products.length)
+        cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').click();
+        cy.get('tbody').should('have.length.above', 0);
+        console.log(products);
     });
   
   })
