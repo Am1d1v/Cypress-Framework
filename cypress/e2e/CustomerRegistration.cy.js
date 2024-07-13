@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import HomePage from "../pageObjects/HomePage";
 
 describe('Customer Registration', () => {
 
