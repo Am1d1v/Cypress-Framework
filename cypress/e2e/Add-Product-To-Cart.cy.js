@@ -13,10 +13,12 @@ describe('Add product to cart', () => {
 
         // Product was added to the cart
         cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').contains('1')
+        cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').click();
+        cy.get('tbody').should('have.length.above', 0);
 
     });
 
-    it('select product "Blackberry" and add it into the cart', () => {
+    it.only('select product "Blackberry" and add it into the cart', () => {
         cy.visit('https://rahulshettyacademy.com/angularpractice/shop');
 
         // The cart is empty
@@ -27,7 +29,8 @@ describe('Add product to cart', () => {
 
         // Product was added to the cart
         cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').contains('1')
-
+        cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').click();
+        cy.get('tbody').should('have.length.above', 0);
     });
   
   })
