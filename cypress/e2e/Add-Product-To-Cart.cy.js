@@ -89,6 +89,16 @@ describe('Add product to cart', () => {
         cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').click();
         cy.get('tbody').should('have.length.above', 0);
 
+        // Checkout
+        shopPage.getCheckoutButton().click();
+
+        // Purchase product
+        cy.get('form.ng-untouched > .btn').contains('Purchase').click();
+
+        // Product was successfully purchased message
+        cy.get('.alert').should('contain', 'Success! Thank you! Your order will be delivered in next few weeks');
+
+
     });
   
   })
