@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import ShopPage from "../pageObjects/ShopPage";
 
 describe('Add product to cart', () => {
     
@@ -56,7 +57,7 @@ describe('Add product to cart', () => {
         cy.get('tbody').should('have.length.above', 0);
     });
 
-    it.only('select products from fixture array and add them into the cart', () => {
+    it('select products from fixture array and add them into the cart', () => {
         cy.visit('https://rahulshettyacademy.com/angularpractice/shop');
 
         // The cart is empty
@@ -70,6 +71,15 @@ describe('Add product to cart', () => {
         cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').click();
         cy.get('tbody').should('have.length.above', 0);
         
+    });
+
+    it.only('should validate Shop page using Page Object Design Pattern', () => {
+        const shopPage = new ShopPage();
+
+        cy.visit('https://rahulshettyacademy.com/angularpractice/shop');
+
+        
+
     });
   
   })

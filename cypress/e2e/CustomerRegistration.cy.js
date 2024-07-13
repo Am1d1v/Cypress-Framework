@@ -47,6 +47,9 @@ describe('Customer Registration', () => {
     // Select "Female" in gender selection field
     homePage.getGender().select(data.gender);
 
+    // "Entrepreneur" in Employment status must be disabled
+    homePage.getEmploymentStatus().should('be.disabled');
+
   });
 
 })
