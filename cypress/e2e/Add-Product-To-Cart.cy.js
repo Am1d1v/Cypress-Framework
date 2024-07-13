@@ -93,12 +93,12 @@ describe('Add product to cart', () => {
         shopPage.getCheckoutButton().click();
 
         // Purchase product
-        cy.get('form.ng-untouched > .btn').contains('Purchase').click();
+        shopPage.getPurchaseButton().contains('Purchase').click();
 
         // Product was successfully purchased message
-        cy.get('.alert').should('contain', 'Success! Thank you! Your order will be delivered in next few weeks');
-
+        shopPage.getPurchaseMessage().should('contain', 'Success! Thank you! Your order will be delivered in next few weeks');
 
     });
+    
   
   })
