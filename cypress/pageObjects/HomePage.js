@@ -13,6 +13,10 @@ class HomePage{
         return cy.get(':nth-child(2) > .form-control');
     }
 
+    getPassword(){
+        return cy.get('#exampleInputPassword1');
+    }
+
     // Gender selection field
     getGender(){
         return  cy.get('#exampleFormControlSelect1');

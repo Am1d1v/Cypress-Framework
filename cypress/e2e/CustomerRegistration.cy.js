@@ -14,7 +14,7 @@ describe('Customer Registration', () => {
   it('should registrate customer', () => {
     cy.visit('https://rahulshettyacademy.com/angularpractice/');
 
-    // Select "Name" input field and type and
+    // Select "Name" input field and type customer name
     cy.get(':nth-child(1) > .form-control').type(data.name);
 
     // Select "Female" in gender selection field
@@ -26,6 +26,26 @@ describe('Customer Registration', () => {
     })
 
     cy.get('#inlineRadio3').should('be.disabled');
+
+  });
+
+  it.only('should validate Home page using Page Object Design Pattern', () => {
+
+    const homePage = new HomePage();
+
+    cy.visit('https://rahulshettyacademy.com/angularpractice/');
+
+    // Select "Name" input field and type customer name
+    homePage.getNameBox().type(data.name);
+
+    // Select "Email" input field and type email
+    homePage.getEmailBox().type(`${data.name}@gmail.com`);
+
+    // Select "Password" input field and type password
+    homePage.getPassword().type('123456')
+
+    // Select "Female" in gender selection field
+    homePage.getGender().select(data.gender);
 
   });
 
