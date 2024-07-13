@@ -78,7 +78,16 @@ describe('Add product to cart', () => {
 
         cy.visit('https://rahulshettyacademy.com/angularpractice/shop');
 
-        
+        // The cart is empty
+        shopPage.getCartProducts().contains('0');
+
+        // Add multiple products to the cart
+        products.forEach((product) => cy.addProduct(product));
+
+        // Product was added to the cart
+        cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').contains(products.length)
+        cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').click();
+        cy.get('tbody').should('have.length.above', 0);
 
     });
   
