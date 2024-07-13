@@ -69,7 +69,7 @@ describe('Add product to cart', () => {
         cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').contains(products.length)
         cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').click();
         cy.get('tbody').should('have.length.above', 0);
-        console.log(products);
+        
     });
   
   })
