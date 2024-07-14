@@ -73,7 +73,7 @@ describe('Add product to cart', () => {
         
     });
 
-    it.only('should validate Shop page using Page Object Design Pattern', () => {
+    it('should validate Shop page using Page Object Design Pattern', () => {
         const shopPage = new ShopPage();
 
         cy.visit('https://rahulshettyacademy.com/angularpractice/shop');
@@ -97,6 +97,27 @@ describe('Add product to cart', () => {
 
         // Product was successfully purchased message
         shopPage.getPurchaseMessage().should('contain', 'Success! Thank you! Your order will be delivered in next few weeks');
+
+    });
+    it.only('should summarize products price', () => {
+        const shopPage = new ShopPage();
+
+        cy.visit('https://rahulshettyacademy.com/angularpractice/shop');
+
+        // The cart is empty
+        shopPage.getCartProducts().contains('0');
+
+        // Add multiple products to the cart
+        products.forEach((product) => cy.addProduct(product));
+
+        // Product was added to the cart
+        cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').contains(products.length)
+        cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').click();
+        cy.get('tbody').should('have.length.above', 0);
+
+        cy.get('td:nth-child(4) strong').then((price) => {
+            
+        });
 
     });
     
