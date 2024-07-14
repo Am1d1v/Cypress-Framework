@@ -102,6 +102,9 @@ describe('Add product to cart', () => {
     it.only('should summarize products price', () => {
         const shopPage = new ShopPage();
 
+        // Total price of the product
+        let totalPrice = 0;
+
         cy.visit('https://rahulshettyacademy.com/angularpractice/shop');
 
         // The cart is empty
@@ -115,9 +118,18 @@ describe('Add product to cart', () => {
         cy.get('#navbarResponsive > .navbar-nav > .nav-item > .nav-link').click();
         cy.get('tbody').should('have.length.above', 0);
 
-        cy.get('td:nth-child(4) strong').then((price) => {
-            
-        });
+        // Get price of every product
+        cy.get('tr td:nth-child(4) strong').each(element => {
+            const productPrice = Number(element.text().slice(2))
+            totalPrice += productPrice;
+        })
+
+        // Total price assertion
+        cy.get('h3 > strong').then(index => {
+            const total = Number(index.text().slice(2));
+            expect(total).to.be.eq(totalPrice);
+        })
+       
 
     });
     
