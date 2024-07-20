@@ -6,11 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "openCypress": "npx cypress open",
-    "tests": "npx cypress run"
+    "testsExecution": "npx cypress run"
   },
   "author": "D",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^13.13.0"
+  },
+  "dependencies": {
+    "cypress-mochawesome-reporter": "^3.8.2"
   }
 }
