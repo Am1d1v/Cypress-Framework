@@ -9,6 +9,9 @@ module.exports = defineConfig({
       require('cypress-mochawesome-reporter/plugin')(on);
     },
   },
-  projectId: "q9vc4q"
+  projectId: "q9vc4q",
+  retries: {
+    runMode: 2,
+  }
 
 });
